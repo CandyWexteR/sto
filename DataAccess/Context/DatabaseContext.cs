@@ -1,4 +1,5 @@
-﻿using Core.Models.Chat;
+﻿using Core.Models.Bugs;
+using Core.Models.Chat;
 using Core.Models.Inventory;
 using Core.Models.Orders;
 using Core.Models.UserRoles;
@@ -14,9 +15,10 @@ public class DatabaseContext : DbContext
     public DbSet<InventoryItem> InventoryItems { get; set; }
     public DbSet<InventoryItemAcceptability> InventoryItemAcceptabilities { get; set; }
     public DbSet<UserRole> UserRoles { get; set; }
-    public DbSet<Order> Orders { get; set; }    
+    public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Vehicle> Vehicles { get; set; }
     public DbSet<ChatMessage> Messages { get; set; }
+    public DbSet<Bug> Bugs { get; set; }
 }   
