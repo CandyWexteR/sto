@@ -1,9 +1,11 @@
 ﻿using Core.Extensions;
+using Newtonsoft.Json;
 
 namespace Core.Models.Inventory;
 
 public class InventoryItem : IdableEntity
 {
+    [JsonConstructor]
     private InventoryItem(Guid id, string name, string description, ulong price, string priceUnits, ulong bought,
         string boughtUnit, string serialNumber)
     {

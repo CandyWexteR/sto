@@ -1,7 +1,10 @@
-﻿namespace Core.Models.Bugs;
+﻿using Newtonsoft.Json;
+
+namespace Core.Models.Bugs;
 
 public class Bug : IdableEntity
 {
+    [JsonConstructor]
     private Bug(Guid id, string title, string description, DateTime createdAt, DateTime? completedAt, Guid ticketId)
     {
         Id = id;
@@ -22,5 +25,14 @@ public class Bug : IdableEntity
     public static Bug Create(Guid id, Guid ticketId, string title, string description, DateTime createdAt, DateTime? completedAt)
     {
         return new Bug(id, title, description, createdAt, completedAt, ticketId);
+    }
+
+    public void UpdateInfo(string title, string description, DateTime? completedAt)
+    {
+        //TODO: Валидация
+        
+        Title = title;
+        Description = description;
+        CompletedAt = completedAt;
     }
 }

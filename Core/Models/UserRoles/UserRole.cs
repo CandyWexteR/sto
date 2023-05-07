@@ -1,10 +1,11 @@
-﻿using Core.Models.UserRoleAccessLevelRights;
+﻿using Newtonsoft.Json;
 
 namespace Core.Models.UserRoles;
 
 public class UserRole : IdableEntity
 {
-    public UserRole(Guid id, string name, string description, AccessLevel users, AccessLevel inventory,
+    [JsonConstructor]
+    private UserRole(Guid id, string name, string description, AccessLevel users, AccessLevel inventory,
         AccessLevel componentsOrderings, AccessLevel serviceOrders, AccessLevel docs, AccessLevel bugs,
         AccessLevel vehicles)
     {
@@ -29,6 +30,13 @@ public class UserRole : IdableEntity
     public AccessLevel ServiceOrders { get; protected set; }
     public AccessLevel Docs { get; protected set; }
     public AccessLevel Bugs { get; protected set; }
-
     public AccessLevel Vehicles { get; protected set; }
+
+    public static UserRole Create(Guid id, string name, string description, AccessLevel users, AccessLevel inventory,
+        AccessLevel componentsOrderings, AccessLevel serviceOrders, AccessLevel docs, AccessLevel bugs,
+        AccessLevel vehicles)
+    {
+        return new UserRole(id, name, description, users, inventory, componentsOrderings, serviceOrders, docs, bugs,
+            vehicles);
+    }
 }

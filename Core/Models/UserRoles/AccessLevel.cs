@@ -1,4 +1,4 @@
-﻿namespace Core.Models.UserRoleAccessLevelRights;
+﻿namespace Core.Models.UserRoles;
 
 public enum AccessLevel
 {
