@@ -2,6 +2,7 @@
 using Core.Models.Chat;
 using Core.Models.Inventory;
 using Core.Models.Orders;
+using Core.Models.Tickets;
 using Core.Models.UserRoles;
 using Core.Models.Users;
 using Core.Models.Vehicles;
@@ -26,4 +27,6 @@ public class DatabaseContext : DbContext
     public DbSet<Vehicle> Vehicles { get; set; }
     public DbSet<ChatMessage> Messages { get; set; }
     public DbSet<Bug> Bugs { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<UsedInventoryItem> UsedInventoryItems { get; set; }
 }   
