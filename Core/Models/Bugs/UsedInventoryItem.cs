@@ -2,7 +2,7 @@
 
 namespace Core.Models.Bugs;
 
-public class UsedInventoryItem
+public class UsedInventoryItem : IdableEntity
 {
     [JsonConstructor]
     private UsedInventoryItem(Guid id, Guid inventoryItemId, Guid bugId)

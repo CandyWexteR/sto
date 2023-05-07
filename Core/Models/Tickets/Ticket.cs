@@ -2,7 +2,7 @@
 
 namespace Core.Models.Tickets;
 
-public class Ticket
+public class Ticket : IdableEntity
 {
     [JsonConstructor]
     protected Ticket(Guid id, Guid vehicleId, TicketState ticketState, ulong cost, Guid responsibleUserId)
