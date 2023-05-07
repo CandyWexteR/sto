@@ -11,6 +11,11 @@ namespace DataAccess.Context;
 
 public class DatabaseContext : DbContext
 {
+    public DatabaseContext(DbContextOptions<DatabaseContext> ops) : base(ops)
+    {
+        
+    }
+    
     public DbSet<Jsonb> Jsonbs { get; set; }
     public DbSet<InventoryItem> InventoryItems { get; set; }
     public DbSet<InventoryItemAcceptability> InventoryItemAcceptabilities { get; set; }
