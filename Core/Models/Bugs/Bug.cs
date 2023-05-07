@@ -2,13 +2,14 @@
 
 public class Bug : IdableEntity
 {
-    private Bug(Guid id, string title, string description, DateTime createdAt, DateTime? completedAt)
+    private Bug(Guid id, string title, string description, DateTime createdAt, DateTime? completedAt, Guid ticketId)
     {
         Id = id;
         Title = title;
         Description = description;
         CreatedAt = createdAt;
         CompletedAt = completedAt;
+        TicketId = ticketId;
     }
     
     public Guid Id { get; protected set; }
@@ -18,8 +19,8 @@ public class Bug : IdableEntity
     public DateTime CreatedAt { get; protected set; }
     public DateTime? CompletedAt { get; protected set; }
 
-    public static Bug Create(Guid id, string title, string description, DateTime createdAt, DateTime? completedAt)
+    public static Bug Create(Guid id, Guid ticketId, string title, string description, DateTime createdAt, DateTime? completedAt)
     {
-        return new Bug(id, title, description, createdAt, completedAt);
+        return new Bug(id, title, description, createdAt, completedAt, ticketId);
     }
 }
