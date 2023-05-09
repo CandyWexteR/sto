@@ -27,6 +27,7 @@ public class InventoryItem : IdableEntity
     public string PriceUnits { get; protected set; }
     public ulong Bought { get; protected set; }
     public string BoughtUnit { get; protected set; }
+    
 
     public static InventoryItem Create(Guid id, string name, string description, ulong price, string priceUnits,
         ulong bought,

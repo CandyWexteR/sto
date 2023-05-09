@@ -16,6 +16,11 @@ public class JsonbRepository<T> : IRepository<T> where T : IdableEntity
 
     protected IEnumerable<T> Database => _context.Jsonbs.AsNoTracking().Select(b => b.Deserialize<T>());
 
+    public async Task<IEnumerable<T>> GetAllAsync()
+    {
+        return _context.Jsonbs.AsNoTracking().Where(v => v.Type == typeof(T).Name).Select(v => v.Deserialize<T>());
+    }
+
     public T? GetById(Guid id)
     {
         return Database.FirstOrDefault(b=>b.Id == id);

@@ -16,6 +16,11 @@ public class RepositoryBase<T> : IRepository<T> where T: class, IdableEntity
         _dbSet = dbSet;
     }
 
+    public async Task<IEnumerable<T>> GetAllAsync()
+    {
+        return _dbSet.AsNoTracking();
+    }
+
     public T? GetById(Guid id)
     {
         return _dbSet.AsNoTracking().FirstOrDefault(v => v.Id == id);

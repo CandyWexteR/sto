@@ -2,6 +2,7 @@
 
 public interface IRepository<T>
 {
+    public Task<IEnumerable<T>> GetAllAsync();
     public T? GetById(Guid id);
     public void Update(T model);
     public void Remove(Guid id);
