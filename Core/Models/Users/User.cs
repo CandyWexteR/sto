@@ -5,8 +5,8 @@ namespace Core.Models.Users;
 public class User : IdableEntity
 {
     [JsonConstructor]
-    public User(Guid id, string username, string firstName, string lastName, string? middleName, Guid userRoleId, 
-        string passwordHash, string? email)
+    public User(Guid id, string username, string firstName, string lastName, string? middleName, Guid userRoleId,
+        string passwordHash, string? email, string accessToken, DateTime accessTokenExpirationDate, string refreshToken)
     {
         Id = id;
         Username = username;
@@ -16,6 +16,9 @@ public class User : IdableEntity
         UserRoleId = userRoleId;
         PasswordHash = passwordHash;
         Email = email;
+        AccessToken = accessToken;
+        AccessTokenExpirationDate = accessTokenExpirationDate;
+        RefreshToken = refreshToken;
     }
 
     public Guid Id { get; protected set; }
@@ -26,20 +29,24 @@ public class User : IdableEntity
     public Guid UserRoleId { get; protected set; }
     public string PasswordHash { get; protected set; }
     public string? Email { get; protected set; }
+    public string AccessToken { get; protected set; }
+    public DateTime AccessTokenExpirationDate { get; protected set; }
+    public string RefreshToken { get; protected set; }
 
     public static User Create(Guid id, string username, string firstName, string lastName, string? middleName,
         Guid userRole, string passwordHash, string? email)
     {
         //TODO: Проверки
-        
-        return new User(id, username, firstName, lastName, middleName, userRole, passwordHash, email);
+
+        return new User(id, username, firstName, lastName, middleName, userRole, passwordHash, email, string.Empty,
+            DateTime.MinValue.ToUniversalTime(), string.Empty);
     }
 
-    public void ChangeInfo(string username, string firstName, string lastName, string? middleName, Guid userRole, 
+    public void ChangeInfo(string username, string firstName, string lastName, string? middleName, Guid userRole,
         string passwordHash, string? email)
     {
         //TODO: Проверки
-        
+
         Username = username;
         FirstName = firstName;
         LastName = lastName;

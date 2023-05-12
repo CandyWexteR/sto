@@ -20,10 +20,10 @@ public class ChatMessage : IdableEntity
     public Guid AuthorId { get; protected set; }
     public Guid TicketId { get; protected set; }
 
-    public static ChatMessage Create(Guid id, string message, DateTime createdAt, Guid authorId, Guid bugId)
+    public static ChatMessage Create(Guid id, string message, DateTime createdAt, Guid authorId, Guid ticketId)
     {
         //TODO: Валидация
         
-        return new ChatMessage(id, message, createdAt, authorId, bugId);
+        return new ChatMessage(id, message, createdAt, authorId, ticketId);
     }
 }
