@@ -1,7 +1,10 @@
-﻿using Application.Inventory.ViewModels;
+﻿using Application.IdGenerator;
+using Application.Inventory.ViewModels;
 using Application.Orders.InputModels;
 using Application.Orders.ViewModels;
+using Application.TimeProvider;
 using Core.Models.Inventory;
+using Core.Models.Orders;
 using Core.Repositories;
 
 namespace Application.Orders;
@@ -11,12 +14,19 @@ public class Orders : IOrders
     private readonly IOrdersRepository _orders;
     private readonly IOrderItemsRepository _orderItems;
     private readonly IInventoryItemRepository _items;
+    private readonly IIdGenerator _idGenerator;
+    private readonly IMarkedForRemoveOrdersRepository _ordersRemoveRepos;
+    private readonly ITimeProvider _timeProvider;
 
-    public Orders(IOrdersRepository orders, IOrderItemsRepository orderItems, IInventoryItemRepository items)
+    public Orders(IOrdersRepository orders, IOrderItemsRepository orderItems, IInventoryItemRepository items,
+        IIdGenerator idGenerator, IMarkedForRemoveOrdersRepository ordersRemoveRepos, ITimeProvider timeProvider)
     {
         _orders = orders;
         _orderItems = orderItems;
         _items = items;
+        _idGenerator = idGenerator;
+        _ordersRemoveRepos = ordersRemoveRepos;
+        _timeProvider = timeProvider;
     }
 
     public async Task<OrderViewModel> GetOrder(Guid id)
@@ -32,7 +42,7 @@ public class Orders : IOrders
 
         return new OrderViewModel()
         {
-            OrderItems = orderedItems.Select(v=>new OrderedItem()
+            OrderItems = orderedItems.Select(v=>new OrderedItemViewModel()
             {
                 InventoryItem = items.First(f=>f.Id == v.OrderedComponent),
                 Count = v.ComponentsCount
@@ -59,14 +69,24 @@ public class Orders : IOrders
         };
     }
 
-    public Task<Guid> AddOrder(OrderInputModel model)
+    public async Task<Guid> AddOrder(OrderInputModel model)
     {
-        throw new NotImplementedException();
+        var id = await _idGenerator.GenerateGuidAsync();
+        var order = Order.Create(id, model.Title, model.Description, model.CreatedAt, model.ResponsibleUserId);
+
+        await _orders.AddAsync(order);
+        
+        return id;
     }
 
-    public Task<Guid> AddOrderItem(OrderItemInputModel model)
+    public async Task<Guid> AddOrderItem(OrderItemInputModel model)
     {
-        throw new NotImplementedException();
+        var id = await _idGenerator.GenerateGuidAsync();
+        var order = new OrderItem(id, model.OrderId, model.InventoryItemId, model.Count);
+
+        await _orderItems.AddAsync(order);
+
+        return id;
     }
 
     public Task ChangeOrderInfo(Guid id, OrderInputModel model)
@@ -74,18 +94,22 @@ public class Orders : IOrders
         throw new NotImplementedException();
     }
 
-    public Task ChangeOrderInfo(Guid id, OrderItemInputModel model)
-    {
-        throw new NotImplementedException();
-    }
+    // public Task ChangeOrderInfo(Guid id, OrderItemInputModel model)
+    // {
+    //     throw new NotImplementedException();
+    // }
 
-    public Task RemoveOrder(Guid id)
+    public async Task RemoveOrder(Guid id)
     {
-        throw new NotImplementedException();
+        // var order = await _orders.GetByIdAsync(id) ?? throw new Exception();
+
+        var time = await _timeProvider.GetCurrentDateTimeAsync();
+        
+        await _ordersRemoveRepos.AddAsync(new MarkedForRemoveOrder(id, time));
     }
 
     public Task RemoveOrderItem(Guid id)
     {
-        throw new NotImplementedException();
+        return _orderItems.RemoveAsync(id);
     }
 }

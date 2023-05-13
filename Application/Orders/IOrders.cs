@@ -12,7 +12,7 @@ public interface IOrders
     public Task<Guid> AddOrderItem(OrderItemInputModel model);
 
     public Task ChangeOrderInfo(Guid id, OrderInputModel model);
-    public Task ChangeOrderInfo(Guid id, OrderItemInputModel model);
+    // public Task ChangeOrderInfo(Guid id, OrderItemInputModel model);
 
     public Task RemoveOrder(Guid id);
     public Task RemoveOrderItem(Guid id);

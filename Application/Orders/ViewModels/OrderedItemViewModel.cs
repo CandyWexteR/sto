@@ -2,7 +2,7 @@
 
 namespace Application.Orders.ViewModels;
 
-public class OrderedItem
+public class OrderedItemViewModel
 {
     public InventoryItemShortViewModel InventoryItem { get; set; }
     public uint Count { get; set; }

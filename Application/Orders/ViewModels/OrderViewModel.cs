@@ -8,5 +8,5 @@ public class OrderViewModel
     public DateTime CreatedAt { get;  set; }
     public DateTime? OrderDelivered { get;  set; }
     public Guid ResponsibleUserId { get;  set; }
-    public List<OrderedItem> OrderItems { get; set; }
+    public List<OrderedItemViewModel> OrderItems { get; set; }
 }
