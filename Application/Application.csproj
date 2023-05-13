@@ -10,4 +10,10 @@
       <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="forCopy\InputModels\" />
+      <Folder Include="forCopy\ViewModels\" />
+      <Folder Include="Jobs\" />
+    </ItemGroup>
+
 </Project>

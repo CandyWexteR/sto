@@ -29,4 +29,5 @@ public class DatabaseContext : DbContext
     public DbSet<Bug> Bugs { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<UsedInventoryItem> UsedInventoryItems { get; set; }
+    public DbSet<MarkedForRemoveOrder> MarkedForRemoveOrders { get; set; }
 }   

@@ -12,11 +12,11 @@ public class OrderItem : IdableEntity
         OrderedComponent = orderedComponent;
         ComponentsCount = componentsCount;
     }
-    public Guid Id { get; set; }
-    public Guid OrderId { get; set; }
+    public Guid Id { get; protected set; }
+    public Guid OrderId { get; protected set; }
     /// <summary>
     /// Идентификатор заказываемой детали InventoryItem
     /// </summary>
-    public Guid OrderedComponent { get; set; }
-    public uint ComponentsCount { get; set; }
+    public Guid OrderedComponent { get; protected set; }
+    public uint ComponentsCount { get; protected set; }
 }
