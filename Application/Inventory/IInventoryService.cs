@@ -11,4 +11,7 @@ public interface IInventoryService
     public Task<Guid> Create(InventoryItemInputModel model);
     public Task ChangeInfo(Guid id, InventoryItemInputModel model);
     public Task Remove(Guid id);
+    public Task AddAcceptability(Guid itemId, Guid vehId);
+    public Task RemoveAcceptability(Guid itemId, Guid vehId);
+    public Task RemoveAcceptability(Guid acceptAbilityId);
 }
