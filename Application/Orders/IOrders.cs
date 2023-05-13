@@ -5,8 +5,8 @@ namespace Application.Orders;
 
 public interface IOrders
 {
-    public Task<OrderViewModel> GetOrder();
-    public Task<OrderItemViewModel> GetOrderItem();
+    public Task<OrderViewModel> GetOrder(Guid id);
+    public Task<OrderItemViewModel> GetOrderItem(Guid id);
     
     public Task<Guid> AddOrder(OrderInputModel model);
     public Task<Guid> AddOrderItem(OrderItemInputModel model);
