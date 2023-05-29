@@ -13,6 +13,7 @@
     <ItemGroup>
       <Folder Include="forCopy\InputModels\" />
       <Folder Include="forCopy\ViewModels\" />
+      <Folder Include="Orders\Commands\" />
       <Folder Include="Tickets\ViewModels\" />
     </ItemGroup>
 
