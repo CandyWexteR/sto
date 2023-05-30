@@ -19,13 +19,18 @@ public class Ticket : IdableEntity
     public ulong Cost { get; protected set; }
     public Guid ResponsibleUserId { get; protected set; }
 
-    public static Ticket Create(Guid id, Guid vehicleId, Guid responsibleUserId)
+    public static Ticket Create(Guid id, Guid vehicleId)
     {
         //TODO: Валидация
-        return new Ticket(id, vehicleId, TicketState.Created, 0, responsibleUserId);
+        return new Ticket(id, vehicleId, TicketState.Created, 0, Guid.Empty);
     }
 
-    public void UpdateInfo(Guid vehicleId, TicketState state, ulong cost, Guid responsibleUserId)
+    public void AssignRespinsibleUser(Guid responsibleUserId)
+    {
+        ResponsibleUserId = responsibleUserId;
+    }
+
+    public void UpdateInfo(Guid vehicleId, TicketState state, ulong cost)
     {
         if (state == TicketState.Created)
             //TODO: message
@@ -38,6 +43,5 @@ public class Ticket : IdableEntity
         VehicleId = vehicleId;
         TicketState = state;
         Cost = cost;
-        ResponsibleUserId = responsibleUserId;
     }
 }
