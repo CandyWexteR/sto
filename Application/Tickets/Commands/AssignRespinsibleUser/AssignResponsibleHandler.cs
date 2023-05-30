@@ -2,7 +2,7 @@
 using Core.Extensions;
 using Core.Repositories;
 
-namespace Application.Tickets.AssignRespinsibleUser;
+namespace Application.Tickets.Commands.AssignRespinsibleUser;
 
 public class AssignResponsibleHandler : ICommandHandler<AssignResponsible>
 {

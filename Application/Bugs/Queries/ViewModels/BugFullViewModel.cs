@@ -1,6 +1,4 @@
-﻿using Core.Models.Bugs;
-
-namespace Application.Bugs.ViewModels;
+﻿namespace Application.Bugs.Queries.ViewModels;
 
 public class BugFullViewModel
 {

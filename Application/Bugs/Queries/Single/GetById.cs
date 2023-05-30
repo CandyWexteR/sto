@@ -1,4 +1,4 @@
-﻿using Application.Bugs.ViewModels;
+﻿using Application.Bugs.Queries.ViewModels;
 using Application.CQRS;
 
 namespace Application.Bugs.Queries.Single;

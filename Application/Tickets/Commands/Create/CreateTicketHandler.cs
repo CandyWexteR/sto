@@ -2,7 +2,7 @@
 using Core.Models.Tickets;
 using Core.Repositories;
 
-namespace Application.Tickets.Create;
+namespace Application.Tickets.Commands.Create;
 
 public class CreateTicketHandler : ICommandHandler<CreateTicket>
 {

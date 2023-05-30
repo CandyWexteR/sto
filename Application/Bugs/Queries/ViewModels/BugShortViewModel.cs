@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-
-namespace Application.Bugs.ViewModels;
+﻿namespace Application.Bugs.Queries.ViewModels;
 
 public class BugShortViewModel
 {

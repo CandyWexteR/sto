@@ -2,7 +2,7 @@
 using Core.Extensions;
 using Core.Repositories;
 
-namespace Application.Tickets.UpdateInfo;
+namespace Application.Tickets.Commands.UpdateInfo;
 
 public class UpdateTicketHandler : ICommandHandler<UpdateTicket>
 {

@@ -1,7 +1,7 @@
 ﻿using Application.CQRS;
 using Core.Models.Tickets;
 
-namespace Application.Tickets.UpdateInfo;
+namespace Application.Tickets.Commands.UpdateInfo;
 
 public class UpdateTicket : ICommand
 {

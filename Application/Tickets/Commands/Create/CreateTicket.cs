@@ -1,6 +1,6 @@
 ﻿using Application.CQRS;
 
-namespace Application.Tickets.Create;
+namespace Application.Tickets.Commands.Create;
 
 public class CreateTicket : ICommand
 {

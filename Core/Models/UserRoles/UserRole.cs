@@ -36,7 +36,28 @@ public class UserRole : IdableEntity
         AccessLevel componentsOrderings, AccessLevel serviceOrders, AccessLevel docs, AccessLevel bugs,
         AccessLevel vehicles)
     {
+        //TODO: validation
+        
         return new UserRole(id, name, description, users, inventory, componentsOrderings, serviceOrders, docs, bugs,
             vehicles);
     }
+    
+    public void UpdateInfo(string name, string description, AccessLevel users, AccessLevel inventory,
+        AccessLevel componentsOrderings, AccessLevel serviceOrders, AccessLevel docs, AccessLevel bugs,
+        AccessLevel vehicles)
+    {
+        //TODO: validation
+        
+        Name = name;
+        Description = description;
+        Users = users;
+        Inventory = inventory;
+        ComponentsOrderings = componentsOrderings;
+        ServiceOrders = serviceOrders;
+        Docs = docs;
+        Bugs = bugs;
+        Vehicles = vehicles;
+    }
+    
+    
 }

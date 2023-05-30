@@ -1,6 +1,6 @@
 ﻿using Application.CQRS;
 
-namespace Application.Tickets.AssignRespinsibleUser;
+namespace Application.Tickets.Commands.AssignRespinsibleUser;
 
 public class AssignResponsible : ICommand
 {

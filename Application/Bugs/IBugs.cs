@@ -1,5 +1,5 @@
 ﻿using Application.Bugs.InputModels;
-using Application.Bugs.ViewModels;
+using Application.Bugs.Queries.ViewModels;
 using Application.PagedResult;
 
 namespace Application.Bugs;
