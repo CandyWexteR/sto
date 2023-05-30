@@ -30,8 +30,7 @@ public class InventoryItem : IdableEntity
     
 
     public static InventoryItem Create(Guid id, string name, string description, ulong price, string priceUnits,
-        ulong bought,
-        string boughtUnit, string serialNumber)
+        ulong bought, string boughtUnit, string serialNumber)
     {
         //TODO: В валидацию добавить серийный номер
         ValidateValues(name, description, price, priceUnits, bought, boughtUnit);
@@ -48,7 +47,7 @@ public class InventoryItem : IdableEntity
     }
 
     public void ChangeInfo(string name, string description, ulong price, string priceUnits, ulong bought,
-        string boughtUnit)
+        string boughtUnit, string serialNumber)
     {
         ValidateValues(name, description, price, priceUnits, bought, boughtUnit);
         
@@ -58,5 +57,6 @@ public class InventoryItem : IdableEntity
         PriceUnits = priceUnits;
         Bought = bought;
         BoughtUnit = boughtUnit;
+        SerialNumber = serialNumber;
     }
 }

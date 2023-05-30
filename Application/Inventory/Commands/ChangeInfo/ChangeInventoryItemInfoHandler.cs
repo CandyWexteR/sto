@@ -17,7 +17,7 @@ public class ChangeInventoryItemInfoHandler : ICommandHandler<ChangeInventoryIte
         var item = await _repos.GetByIdAsync(request.Id) ?? throw new Exception("");
 
         item.ChangeInfo(request.Name, request.Description, request.Price, request.PriceUnits, request.Bought,
-            request.BoughtUnit);
+            request.BoughtUnit, request.SerialNumber);
 
         await _repos.UpdateAsync(item);
     }

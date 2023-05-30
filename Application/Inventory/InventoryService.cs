@@ -70,7 +70,7 @@ public class InventoryService : IInventoryService
         var item = await _repos.GetByIdAsync(id) ?? throw new Exception("");
 
         item.ChangeInfo(model.Name, model.Description, model.Price, model.PriceUnits, model.Bought,
-            model.BoughtUnit);
+            model.BoughtUnit, model.SerialNumber);
 
         await _repos.UpdateAsync(item);
     }
