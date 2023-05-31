@@ -1,0 +1,25 @@
+﻿@model WebApplication1.Controllers.LoginController.Models.LoginModel
+
+@{
+    ViewBag.Title = "Вход";
+    Layout = "_Layout";
+}
+
+<div>
+    <h2>Форма входа</h2>
+    @using (Html.BeginForm("LogIn", "Login", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, "Имя пользователя")
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+        </div>
+        <br/>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, "Пароль")
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        </div>
+        <br/>
+        <button type="submit" class="btn btn-primary">Вход</button>
+    }
+</div>

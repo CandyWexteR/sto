@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Additonal;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers;
@@ -15,6 +17,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        HttpContext.User = new SelfPrincipal(new List<Claim>());
+
         return View();
     }
 
