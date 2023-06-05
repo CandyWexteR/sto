@@ -18,8 +18,7 @@ public class GetSingleUserViaTokenHandler : IQueryHandler<GetSingleUserViaToken,
 
     public async Task<UserViewModel> Handle(GetSingleUserViaToken request, CancellationToken cancellationToken)
     {
-        var userId = await _decrypter.DecryptFromBase64(request.Token);
-        var user = await _users.GetByIdAsync(new Guid(userId));
+        var user = (await _users.GetAllAsync()).FirstOrDefault(v=>v.AccessToken == request.Token);
 
         user.ThrowIfNull();
         

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Application.Constants;
+using Newtonsoft.Json;
 
 namespace Core.Models.Users;
 
@@ -34,12 +35,12 @@ public class User : IdableEntity
     public string RefreshToken { get; protected set; }
 
     public static User Create(Guid id, string username, string firstName, string lastName, string? middleName,
-        Guid userRole, string passwordHash, string? email)
+        Guid userRole, string passwordHash, string? email, string accessToken, string refreshToken)
     {
         //TODO: Проверки
 
-        return new User(id, username, firstName, lastName, middleName, userRole, passwordHash, email, string.Empty,
-            DateTime.MinValue.ToUniversalTime(), string.Empty);
+        return new User(id, username, firstName, lastName, middleName, userRole, passwordHash, email, accessToken,
+            DateTime.MinValue.ToUniversalTime(), refreshToken);
     }
 
     public void ChangeInfo(string username, string firstName, string lastName, string? middleName, Guid userRole,
@@ -54,5 +55,11 @@ public class User : IdableEntity
         UserRoleId = userRole;
         PasswordHash = passwordHash;
         Email = email;
+    }
+
+    public void UpdateToken(Guid token, Guid refreshToken)
+    {
+        AccessToken = token.ToString(TokenType.GuidType);
+        RefreshToken = refreshToken.ToString(TokenType.GuidType);
     }
 }

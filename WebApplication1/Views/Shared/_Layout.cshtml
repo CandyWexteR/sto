@@ -1,5 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+<style>
+            body {
+                    background-image: url("https://www.wallpaperflare.com/static/414/644/835/abstract-digital-art-geometry-digital-wallpaper.jpg");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+        </style>
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,7 +15,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true"/>
 </head>
+
 <body>
+
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container-fluid">
@@ -18,16 +27,19 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Домой</a>
                     </li>
 
-                    @if (@User.Claims.FirstOrDefault(v=>v.Type != "authtoken") == null)
+                    @if (@TempData["token"] == null || User.Identities.Any(v => v.Claims.Any(f => f.Type == "token")))
                     {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="GetLoginPage">Вход</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Register" asp-action="RegisterForm">Регистрация</a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="GetLoginPage">Личный кабинет</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="My">Личный кабинет</a>
                         </li>
                     }
                     <li class="nav-item">
@@ -39,6 +51,7 @@
     </nav>
 </header>
 <div class="container">
+
     <main role="main" class="pb-3">
         @RenderBody()
     </main>

@@ -15,7 +15,6 @@
       <Folder Include="Tickets\Queries\GetPage\" />
       <Folder Include="Tickets\Queries\GetSingle\" />
       <Folder Include="UserRoles\Commands\" />
-      <Folder Include="Users\Commands\" />
     </ItemGroup>
 
     <ItemGroup>

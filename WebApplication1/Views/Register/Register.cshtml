@@ -1,0 +1,57 @@
+﻿@model Application.Users.Commands.CreateUser.CreateUser
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div>
+    @using (Html.BeginForm("Register", "Register", FormMethod.Post))
+    {
+        @Html.ValidationSummary()
+    
+        <div class="form-group">
+            @Html.LabelFor(m => m.FirstName)
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+    
+        <div class="form-group">
+            @Html.LabelFor(m => m.LastName)
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+    
+        <div class="form-group">
+            @Html.LabelFor(m => m.MiddleName)
+            @Html.TextBoxFor(m => m.MiddleName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.MiddleName)
+        </div>
+    
+        <div class="form-group">
+            @Html.LabelFor(m => m.Number)
+            @Html.TextBoxFor(m => m.Number, new { @class = "form-control", type = "tel" })
+            @Html.ValidationMessageFor(m => m.Number)
+        </div>
+    
+        <div class="form-group">
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+    
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+    
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    
+        <button type="submit" class="btn btn-primary" asp-action="Register" asp-controller="Register">Зарегистрироваться</button>
+    }
+</div>

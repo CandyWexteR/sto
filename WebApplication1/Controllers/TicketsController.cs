@@ -5,7 +5,8 @@ namespace WebApplication1.Controllers;
 
 public class TicketsController : BaseController
 {
-    public TicketsController(IMediator mediator) : base(mediator)
+    public TicketsController(IMediator mediator, IHttpContextAccessor accessor) 
+        : base(mediator, accessor)
     {
     }
     

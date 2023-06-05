@@ -1,4 +1,6 @@
 ﻿using System.Security.Claims;
+using Application.Users.Commands.UpdateUserToken;
+using Application.Users.Queries.GetSingle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Additonal;
@@ -11,9 +13,9 @@ public class LoginController : BaseController
 {
     private readonly IHttpContextAccessor _accessor;
 
-    public LoginController(IMediator mediator, IHttpContextAccessor accessor) : base(mediator)
+    public LoginController(IMediator mediator, IHttpContextAccessor accessor) 
+        : base(mediator, accessor)
     {
-        _accessor = accessor;
     }
 
     [HttpGet]
@@ -21,18 +23,29 @@ public class LoginController : BaseController
     {
         return View("LoginPage");
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> LogIn(LoginModel model)
     {
-        var claims = new List<Claim>() { new Claim("authtoken", Guid.NewGuid().ToString("N")) };
-        var identity = new ClaimsIdentity(claims);
-        identity.Label = "user token identity label";
-        _accessor.HttpContext.User = new ClaimsPrincipal(identity); 
-        //_accessor.HttpContext.Session.SetString("token", "asd");
+        var getUserModel = new GetUserViaLoginPassword()
+        {
+            Username = model.Username,
+            Password = model.Password
+        };
+
+        var user = await _mediator.Send(getUserModel);
+
+        var updateTokenCommand = new UpdateUserToken()
+        {
+            Id = user.Id
+        };
+
+        await _mediator.Send(updateTokenCommand);
         
-        return RedirectToAction();
+        user = await _mediator.Send(getUserModel);
+
+        await SetUserToken(user);
+
+        return RedirectToAction("My", "User");
     }
-    
-    
 }
